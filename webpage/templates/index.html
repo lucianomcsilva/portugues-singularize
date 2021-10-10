@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="/static/styles.css" rel="stylesheet">
+        <title>Singular</title>
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <h1>Singular - Portugues Brasil</h1>
+        </div>
+
+
+        <div class="container">
+            <div class="section">
+                <form name="formulario" method='POST'>
+                    <input autocomplete="off"  type="text" id="palavra" name="palavra" OnKeyUp='checkTyping()' placeholder="Palavra no plural">
+                    <input type="submit" id="enviar" value='enviar' onClick="window.location = window.location.origin+'/'+testes"  class='blocked'>
+                </form>
+                <div id="status"></div>
+            </div>
+
+            <div class="resposta">
+
+                <span style='font-size:24px'>
+                    <b>Plural:</b> {{palavra}}</h5>
+                    |
+                    <b>Singular:</b> {{singular}}</h5>
+                </span>
+            </div>
+        </div>
+    </body>
+    <script>
+        let checkTyping =  (El) => {
+
+            palavra = document.getElementById("palavra").value;
+            button = document.getElementById("enviar");
+            if (palavra.substr(palavra.length - 1).toLowerCase() == 's')
+            {
+                //normal
+                document.getElementById("status").innerHTML="Tem cara de plural";
+                button.disabled = false;
+                button.classList.remove('blocked');
+            }
+            else
+            {
+                //bloquear
+                document.getElementById("status").innerHTML="Não é plural";
+                button.disabled = true;
+                button.classList.add('blocked');
+            }
+        }
+    </script>
+</html>
